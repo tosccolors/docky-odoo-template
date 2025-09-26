@@ -1,7 +1,7 @@
 version: '3.7'
 networks:
   default:
-    name: tosc-template
+    name: tosc-test16
     driver: bridge
     driver_opts:
       com.docker.network.driver.mtu: 1450
@@ -89,10 +89,10 @@ services:
     expose:
       - 8080
 
-  tosc_odoo16_template:
-    build: /home/docky/tosc_odoo16_template/odoo/
-    container_name: tosc_odoo16_template
-    image: tosc-registry:443/tosc_odoo16_template:latest
+  tosc_test16:
+    build: /home/docky/tosc-test16/odoo/
+    container_name: tosc_test16
+    image: tosc-registry:443/tosc_test16:latest
     environment:
       - MIGRATE=false
       - PYTHONDONTWRITEBYTECODE=true
@@ -102,20 +102,20 @@ services:
       - DB_MAXCONN=$DB_MAXCONN
       - DB_HOST=$PGHOST
       - ADMIN_PASSWD=${ADMIN_PASSWD}
-      - DB_NAME=bo16.odoo-template.nl
-      - DB_FILTER=bo16.odoo-template.nl
+      - DB_NAME=bo16-test.tosc.nl
+      - DB_FILTER=bo16-test.tosc.nl
       - RUNNING_ENV=prod
       - LIST_DB=false
       #     - DEMO=False
       - LIMIT_TIME_CPU=600
       - LIMIT_TIME_REAL=1200
       - WORKERS=3
-      - ADDONS_PATH=${ADDONS_PATH_TOSC_ODOO16_TEMPLATE}
+      - ADDONS_PATH=${ADDONS_PATH_TOSC_TEST16}
       #      - MARABUNTA_MODE=demo
-      - VIRTUAL_HOST=bo16.odoo-template.nl
+      - VIRTUAL_HOST=bo16-test.tosc.nl
       - VIRTUAL_PORT=8069,8072/websocket
       - KWKHTMLTOPDF_SERVER_URL=http://kwkhtmltopdf:8080
-      - ODOO_REPORT_URL=http://tosc_odoo16_template:8069
+      - ODOO_REPORT_URL=http://tosc_test16:8069
 #    user: odoo
 #    expose:
 #      - 8069
@@ -124,11 +124,11 @@ services:
       - 8077:8069
       - 8078:8072
     volumes:
-#      - /home/docky/tosc_odoo16_template/odoo/external-src:/odoo/external-src
-#      - /home/docky/tosc_odoo16_template/odoo/src/addons:/odoo/src/odoo/addons
-#      - /home/docky/tosc_odoo16_template/odoo/links:/odoo/links
-#      - /home/docky/tosc_odoo16_template/odoo/local-src:/odoo/local-src
-      - /home/docky/tosc_odoo16_template/data:/odoo/data/odoo
+#      - /home/docky/tosc-test16/odoo/external-src:/odoo/external-src
+#      - /home/docky/tosc-test16/odoo/src/addons:/odoo/src/odoo/addons
+#      - /home/docky/tosc-test16/odoo/links:/odoo/links
+#      - /home/docky/tosc-test16/odoo/local-src:/odoo/local-src
+      - /home/docky/tosc-test16/data:/odoo/data/odoo
 #    command: [ "odoo" ]
     command: [ "bash" ]
     stdin_open: true
