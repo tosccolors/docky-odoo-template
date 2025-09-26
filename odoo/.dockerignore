@@ -1,6 +1,6 @@
-src/.git/**/*
-src/.git
-src/.gitignore
+**/.git/**/*
+**/.git
+**/.gitignore
 **/.travis.yml
 **/LICENSE
 **/*.pyc
@@ -8,6 +8,6 @@ src/.gitignore
 **/*.egg-info
 
 # Only for dev
-#local-src/**/*
-#external-src/**/*
-#src/addons
+local-src/**/*
+external-src/**/*
+src/addons

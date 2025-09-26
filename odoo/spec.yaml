@@ -4,416 +4,361 @@ odoo:
     remotes:
         oca: https://github.com/OCA/OCB.git
     merges:
-        - remote: oca
-          ref: "14.0"
+      - remote: oca
+        ref: "16.0"
 
 account-analytic:
-    modules: []
-    src: https://github.com/OCA/account-analytic 14.0
-
-account-budgeting:
-    modules: []
-    src: https://github.com/OCA/account-budgeting 14.0
+  remotes:
+    oca: https://github.com/OCA/account-analytic
+  merges:
+    - oca 16.0
+    # analytic_base_department
+    - oca refs/pull/658/head
 
 account-closing:
-    modules: []
-    src: https://github.com/OCA/account-closing 14.0
+    modules: [ ]
+    src: https://github.com/OCA/account-closing 16.0
 
 account-consolidation:
-    modules: []
-    src: https://github.com/OCA/account-consolidation 14.0
-
-account-financial-reporting:
-    modules: []
-    src: https://github.com/OCA/account-financial-reporting 14.0
-
-account-financial-tools:
-    modules: []
-    src: https://github.com/OCA/account-financial-tools 14.0
+    modules: [ ]
+    src: https://github.com/OCA/account-consolidation 16.0
 
 account-fiscal-rule:
-    modules: []
-    src: https://github.com/OCA/account-fiscal-rule 14.0
+    modules: [ ]
+    src: https://github.com/OCA/account-fiscal-rule 16.0
 
-account-invoice-reporting:
-    modules: []
-    src: https://github.com/OCA/account-invoice-reporting 14.0
+account-financial-reporting:
+    modules: [ ]
+    src: https://github.com/OCA/account-financial-reporting 16.0
+
+account-financial-tools:
+    modules: [ ]
+    src: https://github.com/OCA/account-financial-tools 16.0
 
 account-invoicing:
-    modules: []
-    src: https://github.com/OCA/account-invoicing 14.0
-
-account-payment:
-    modules: []
-    src: https://github.com/OCA/account-payment 14.0
+    modules: [ ]
+    src: https://github.com/OCA/account-invoicing 16.0
 
 account-reconcile:
-    modules: []
-    src: https://github.com/OCA/account-reconcile 14.0
+  remotes:
+    oca: https://github.com/OCA/account-reconcile
+  merges:
+    - oca 16.0
+    - oca refs/pull/815/head
 
 bank-payment:
-    modules: []
-    src: https://github.com/OCA/bank-payment 14.0
+    modules: [ ]
+    src: https://github.com/OCA/bank-payment 16.0
 
 bank-statement-import:
-    modules: []
-    src: https://github.com/OCA/bank-statement-import 14.0
-
-brand:
-    modules: []
-    src: https://github.com/OCA/brand 14.0
+    modules: [ ]
+    src: https://github.com/OCA/bank-statement-import 16.0
 
 calendar:
     modules: []
-    src: https://github.com/OCA/calendar 14.0
+    src: https://github.com/OCA/calendar 16.0
 
-connector:
+connector-cmis:
     modules: []
-    src: https://github.com/OCA/connector 14.0
+    src: https://github.com/OCA/connector-cmis 16.0
 
 connector-interfaces:
     modules: []
-    src: https://github.com/OCA/connector-interfaces 14.0
+    src: https://github.com/OCA/connector-interfaces 16.0
 
-connector-telephony:
+connector:
     modules: []
-    src: https://github.com/OCA/connector-telephony 14.0
-
-connector-ecommerce:
-    modules: []
-    src: https://github.com/OCA/connector-ecommerce 14.0
+    src: https://github.com/OCA/connector 16.0
 
 contract:
-    modules: []
-    src: https://github.com/OCA/contract 14.0
+    modules: [ ]
+    src: https://github.com/OCA/contract 16.0
 
-commission:
-    modules: []
-    src: https://github.com/OCA/commission 14.0
-
-credit-control:
-    modules: []
-    src: https://github.com/OCA/credit-control 14.0
+community-data-files:
+    modules: [ ]
+    src: https://github.com/OCA/community-data-files 16.0
 
 crm:
-    modules: []
-    src: https://github.com/OCA/crm 14.0
+    modules: [ ]
+    src: https://github.com/OCA/crm 16.0
 
-currency:
-    modules: []
-    src: https://github.com/OCA/currency 14.0
+commission:
+    modules: [ ]
+    src: https://github.com/OCA/commission 16.0
+
+credit-control:
+    modules: [ ]
+    src: https://github.com/OCA/credit-control 16.0
 
 data-protection:
     modules: []
-    src: https://github.com/OCA/data-protection 14.0
-
-dms:
-    modules: []
-    src: https://github.com/OCA/dms 14.0
-
-ddmrp:
-    modules: []
-    src: https://github.com/OCA/ddmrp 14.0
+    src: https://github.com/OCA/data-protection 16.0
 
 e-commerce:
-    modules: []
-    src: https://github.com/OCA/e-commerce 14.0
+    modules: [ ]
+    src: https://github.com/OCA/e-commerce 16.0
+
 
 edi:
-    modules: []
-    src: https://github.com/OCA/edi 14.0
+  remotes:
+    oca: https://github.com/OCA/edi
+#    hbrunn: https://github.com/hbrunn/edi
+  merges:
+    - oca 16.0
+    # ocr_magic
+    - oca refs/pull/1091/head
+#    - hbrunn 16.0-account_edi_simple_pdf-ocrmypdf
 
 event:
-    modules: []
-    src: https://github.com/OCA/event 14.0
-
-field-service:
-    modules: []
-    src: https://github.com/OCA/field-service 14.0
-
-fleet:
-    modules: []
-    src: https://github.com/OCA/fleet 14.0
+    modules: [ ]
+    src: https://github.com/OCA/event 16.0
 
 geospatial:
     modules: []
-    src: https://github.com/OCA/geospatial 14.0
-
-helpdesk:
-    modules: []
-    src: https://github.com/OCA/helpdesk 14.0
+    src: https://github.com/OCA/geospatial 16.0
 
 hr:
-    modules: []
-    src: https://github.com/OCA/hr 14.0
+  remotes:
+    oca: https://github.com/OCA/hr
+  merges:
+    - oca 16.0
+    # hr_employee_service
+    - oca refs/pull/1330/head
+    # hr_employee_service_contract
+    - oca refs/pull/1226/head
 
-hr-expense:
-    modules: []
-    src: https://github.com/OCA/hr-expense 14.0
+hr-timesheet:
+    modules: [ ]
+    src: https://github.com/OCA/hr-timesheet 16.0
 
-hr-holidays:
-    modules: []
-    src: https://github.com/OCA/hr-holidays 14.0
+helpdesk:
+  remotes:
+    oca: https://github.com/OCA/helpdesk
+  merges:
+    - oca 16.0
+    - oca refs/pull/673/head
 
 intrastat-extrastat:
-    modules: []
-    src: https://github.com/OCA/intrastat-extrastat 14.0
-
-iot:
-    modules: []
-    src: https://github.com/OCA/iot 14.0
+    modules: [ ]
+    src: https://github.com/OCA/intrastat-extrastat 16.0
 
 knowledge:
-    modules: []
-    src: https://github.com/OCA/knowledge 14.0
+    modules: [ ]
+    src: https://github.com/OCA/knowledge 16.0
 
-l10n-netherlends:
-    modules: []
-    src: https://github.com/OCA/l10n-netherlands 14.0
+l10n-netherlands:
+    modules: [ ]
+    src: https://github.com/OCA/l10n-netherlands 16.0
 
 maintenance:
-    modules: []
-    src: https://github.com/OCA/maintenance 14.0
-
-manufacture:
-    modules: []
-    src: https://github.com/OCA/manufacture 14.0
-
-manufacture-reporting:
-    modules: []
-    src: https://github.com/OCA/manufacture-reporting 14.0
+    modules: [ ]
+    src: https://github.com/OCA/maintenance 16.0
 
 margin-analysis:
-    modules: []
-    src: https://github.com/OCA/margin-analysis 14.0
+    modules: [ ]
+    src: https://github.com/OCA/margin-analysis 16.0
+
+misc:
+    remotes:
+        tosc: https://github.com/tosccolors/misc
+    merges:
+      - remote: tosc
+        ref: "16.0-test"
+      - remote: tosc
+        ref: refs/pull/292/head
+      - remote: tosc
+        ref: refs/pull/293/head
+      - remote: tosc
+        ref: refs/pull/296/head
 
 mis-builder:
-    modules: []
-    src: https://github.com/OCA/mis-builder 14.0
-
-mis-builder-contrib:
-    modules: []
-    src: https://github.com/OCA/mis-builder-contrib 14.0
+    modules: [ ]
+    src: https://github.com/OCA/mis-builder 16.0
 
 multi-company:
     modules: []
-    src: https://github.com/OCA/multi-company 14.0
-
-oca-agreement:
-    modules: []
-    src: https://github.com/OCA/oca-agreement 14.0
-
-odoo-pim:
-    modules: []
-    src: https://github.com/OCA/odoo-pim 14.0
-
-odoorpc:
-    modules: []
-    src: https://github.com/OCA/odoorpc master
-
-OpenUpgrade:
-    modules: []
-    src: https://github.com/OCA/OpenUpgrade 14.0
-
-openupgradelib:
-    modules: []
-    src: https://github.com/OCA/openupgradelib master
+    src: https://github.com/OCA/multi-company 16.0
 
 operating-unit:
-    modules: []
-    src: https://github.com/OCA/operating-unit 14.0
+  remotes:
+    oca: https://github.com/OCA/operating-unit
+  merges:
+    - oca 16.0
+    # account_operating_unit
+    - oca refs/pull/656/head
+    # report_qweb_operating_unit
+    - oca refs/pull/699/head
+    # contract_qweb_operating_unit
+    - oca refs/pull/700/head
 
 partner-contact:
-    modules: []
-    src: https://github.com/OCA/partner-contact 14.0
-
-pms:
-    modules: []
-    src: https://github.com/OCA/pms 14.0
-
-pos:
-    modules: []
-    src: https://github.com/OCA/pos 14.0
-
-product-attribute:
-    modules: []
-    src: https://github.com/OCA/product-attribute 14.0
-
-product-configurator:
-    modules: []
-    src: https://github.com/OCA/product-configurator 14.0
-
-product-pack:
-    modules: []
-    src: https://github.com/OCA/product-pack 14.0
-
-product-variant:
-    modules: []
-    src: https://github.com/OCA/product-variant 14.0
+    modules: [ ]
+    src: https://github.com/OCA/partner-contact 16.0
 
 project:
-    modules: []
-    src: https://github.com/OCA/project 14.0
+  remotes:
+    oca: https://github.com/OCA/project
+  merges:
+    - oca 16.0
+    - oca refs/pull/1482/head
+
+project-agile:
+    modules: [ ]
+    src: https://github.com/OCA/project-agile 16.0
 
 project-reporting:
-    modules: []
-    src: https://github.com/OCA/project-reporting 14.0
+    modules: [ ]
+    src: https://github.com/OCA/project-reporting 16.0
 
+product-attribute:
+    modules: [ ]
+    src: https://github.com/OCA/product-attribute 16.0
+
+product-variant:
+    modules: [ ]
+    src: https://github.com/OCA/product-variant 16.0
+
+purchase-workflow:
+    modules: [ ]
+    src: https://github.com/OCA/purchase-workflow 16.0
 
 purchase-reporting:
     modules: []
-    src: https://github.com/OCA/purchase-reporting 14.0
-
-purchase-workflow:
-    modules: []
-    src: https://github.com/OCA/purchase-workflow 14.0
+    src: https://github.com/OCA/purchase-reporting 16.0
 
 queue:
     modules: []
-    src: https://github.com/OCA/queue 14.0
-
-repair:
-    modules: []
-    src: https://github.com/OCA/repair 14.0
+    src: https://github.com/OCA/queue 16.0
 
 reporting-engine:
     modules: []
-    src: https://github.com/OCA/reporting-engine 14.0
+    src: https://github.com/OCA/reporting-engine 16.0
 
 rest-framework:
     modules: []
-    src: https://github.com/OCA/rest-framework 14.0
-
-rma:
-    modules: []
-    src: https://github.com/OCA/rma 14.0
+    src: https://github.com/OCA/rest-framework 16.0
 
 sale-financial:
     modules: []
-    src: https://github.com/OCA/sale-financial- 14.0
-
-sale-workflow:
-    modules: [ ]
-    src: https://github.com/OCA/sale-workflow 14.0
-
-sale-promotion:
-    modules: [ ]
-    src: https://github.com/OCA/sale-promotion 14.0
+    src: https://github.com/OCA/sale-financial 16.0
 
 sale-reporting:
     modules: []
-    src: https://github.com/OCA/sale-reporting 14.0
+    src: https://github.com/OCA/sale-reporting 16.0
 
-search-engine:
+sale-workflow:
     modules: []
-    src: https://github.com/OCA/search-engine 14.0
+    src: https://github.com/OCA/sale-workflow 16.0
 
-server-auth:
-    modules: [ ]
-    src: https://github.com/OCA/server-auth 14.0
-
-server-backend:
-    modules: []
-    src: https://github.com/OCA/server-backend 14.0
-
-server-brand:
-    modules: []
-    src: https://github.com/OCA/server-brand 14.0
-
-server-env:
-    modules: []
-    src: https://github.com/OCA/server-env 14.0
-
-server-tools:
-    modules: []
-    src: https://github.com/OCA/server-tools 14.0
-
-server-ux:
-    modules: []
-    src: https://github.com/OCA/server-ux 14.0
-
-storage:
-    modules: []
-    src: https://github.com/OCA/storage 14.0
-
-stock-logistics-reporting:
-    modules: []
-    src: https://github.com/OCA/stock-logistics-reporting 14.0
-
-stock-logistics-warehouse:
-    modules: []
-    src: https://github.com/OCA/stock-logistics-warehouse 14.0
-
-stock-logistics-request:
-    modules: []
-    src: https://github.com/OCA/stock-logistics-request 14.0
-
-stock-logistics-availability:
-    modules: []
-    src: https://github.com/OCA/stock-logistics-availability 14.0
+social:
+    remotes:
+        oca: https://github.com/OCA/social.git
+        tosccolors: https://github.com/tosccolors/social.git
+    merges:
+      - tosccolors 16.0
+      - oca refs/pull/1641/head
+      - oca refs/pull/1499/head
+      - oca refs/pull/1647/head
+      - oca refs/pull/1624/head
+      - oca refs/pull/1633/head
 
 stock-logistics-barcode:
     modules: []
-    src: https://github.com/OCA/stock-logistics-barcode 14.0
+    src: https://github.com/OCA/stock-logistics-barcode 16.0
 
-stock-logistics-tracking:
+stock-logistics-reporting:
     modules: []
-    src: https://github.com/OCA/stock-logistics-tracking 14.0
+    src: https://github.com/OCA/stock-logistics-reporting 16.0
 
-stock-logistics-interfaces:
+stock-logistics-transport:
     modules: []
-    src: https://github.com/OCA/stock-logistics-interfaces 14.0
+    src: https://github.com/OCA/stock-logistics-transport 16.0
 
-stock-logistics-orderpoint:
+stock-logistics-workflow:
     modules: []
-    src: https://github.com/OCA/stock-logistics-orderpoint 14.0
+    src: https://github.com/OCA/stock-logistics-workflow 16.0
+
+server-auth:
+    modules: []
+    src: https://github.com/tosccolors/server-auth 16.0
+
+server-tools:
+    modules: []
+    src: https://github.com/OCA/server-tools 16.0
+
+server-ux:
+    modules: []
+    src: https://github.com/OCA/server-ux 16.0
+
+server-backend:
+    modules: []
+    src: https://github.com/OCA/server-backend 16.0
 
 timesheet:
+  remotes:
+    oca: https://github.com/OCA/timesheet
+  merges:
+    - oca 16.0
+
+vertical-agriculture:
     modules: []
-    src: https://github.com/OCA/timesheet 14.0
+    src: https://github.com/OCA/vertical-agriculture 16.0
 
 vertical-association:
     modules: []
-    src: https://github.com/OCA/vertical-association 14.0
+    src: https://github.com/OCA/vertical-association 16.0
+
+vertical-construction:
+    modules: []
+    src: https://github.com/OCA/vertical-construction 16.0
+
+vertical-edition:
+    modules: []
+    src: https://github.com/OCA/vertical-edition 16.0
 
 vertical-education:
     modules: []
-    src: https://github.com/OCA/vertical-education 14.0
+    src: https://github.com/OCA/vertical-education 16.0
 
-vertical-rental:
+vertical-isp:
     modules: []
-    src: https://github.com/OCA/vertical-rental 14.0
+    src: https://github.com/OCA/vertical-isp 16.0
+
+vertical-medical:
+    modules: []
+    src: https://github.com/OCA/vertical-medical 16.0
+
+vertical-travel:
+    modules: []
+    src: https://github.com/OCA/vertical-travel 16.0
+
+vertical-professional-services:
+    remotes:
+        tosc: https://github.com/tosccolors/vertical-professional-services
+    merges:
+     -  tosc 16.0-test
+     -  tosc 16.0-67-ps_timesheet_invoicing_time_control
+     -  tosc 16.0-test-v14-update
+     -  tosc refs/pull/89/head
+     -  tosc refs/pull/90/head
+     -  tosc refs/pull/93/head
 
 web:
     modules: []
-    src: https://github.com/OCA/web 14.0
-
-web-api:
-    modules: []
-    src: https://github.com/OCA/web-api 14.0
-
-webhook:
-    modules: []
-    src: https://github.com/OCA/webhook 14.0
+    src: https://github.com/OCA/web 16.0
 
 webkit-tools:
     modules: []
-    src: https://github.com/OCA/webkit-tools 14.0
-
-website:
-    modules: []
-    src: https://github.com/OCA/website-cms 14.0
+    src: https://github.com/OCA/webkit-tools 16.0
 
 website-cms:
     modules: []
-    src: https://github.com/OCA/website 14.0
+    src: https://github.com/OCA/website-cms 16.0
 
-website-themes:
+odoo-usability:
     modules: []
-    src: https://github.com/OCA/website-themes 14.0
+    src: https://github.com/akretion/odoo-usability 16.0
 
-wms:
+ak-odoo-incubator:
     modules: []
-    src: https://github.com/OCA/wms 14.0
-
-
+    src: https://github.com/akretion/ak-odoo-incubator 16.0

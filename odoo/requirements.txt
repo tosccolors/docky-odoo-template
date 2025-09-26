@@ -1,0 +1,14 @@
+openupgradelib==3.10.0
+apns2
+xlrd==1.2.0
+Werkzeug==2.0.2
+pyfcm
+extract_msg
+python-jose
+barcode
+astor
+phonenumbers
+pypdf
+pyopenssl
+ocrmypdf
+openpyxl

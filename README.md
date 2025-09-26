@@ -1,7 +1,9 @@
-# Ak recipe for ShopInvader project 
+# Ak recipe for Odoo16 project 
 
 Clone it
 
-Define your repository as virtual environement
+Modify:
 
-Then go to https://github.com/akretion/ak/wiki
+/odoo/Dockerfile
+/odoo/spec.yaml
+docker-compose.yml

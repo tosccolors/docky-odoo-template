@@ -134,6 +134,7 @@ server {
 {{ range $container := $containers }}
     {{ $enable_allowlist := eq (or ($container.Env.ALLOWLIST) "") "true" }}
     {{ $keyportal := eq (or ($container.Env.KEYPORTAL) "") "true" }}
+    {{ $dbfilter := eq (or ($container.Env.DBFILTER_FROM_HEADER) "") "true" }}
     {{ $pp := split $container.Env.VIRTUAL_PORT ","}}
     {{ $ppLen := len $pp }}
     {{ $addrLen := len $container.Addresses }}
@@ -320,6 +321,11 @@ server {
         deny all;
         error_page 403  =  @error_redirect;
             {{ end }}
+            {{ if $dbfilter }}
+                {{ if (exists (printf "/etc/nginx/vhost.d/%s_dbfilter" $host )) }}
+	    include {{ (printf "/etc/nginx/vhost.d/%s_dbfilter" $host ) }};
+	            {{ end }}
+	        {{ end }}
 		    {{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
 		uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }}_{{ $port }};
@@ -342,6 +348,11 @@ server {
         deny all;
         error_page 403  =  @error_redirect;
             {{ end }}
+            {{ if $dbfilter }}
+                {{ if (exists (printf "/etc/nginx/vhost.d/%s_dbfilter" $host )) }}
+	    include {{ (printf "/etc/nginx/vhost.d/%s_dbfilter" $host ) }};
+	            {{ end }}
+	        {{ end }}
             {{ if eq $proto "uwsgi" }}
         include uwsgi_params;
         uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }};
@@ -426,6 +437,11 @@ server {
         deny all;
         error_page 403  =  @error_redirect;
             {{ end }}
+            {{ if $dbfilter }}
+                {{ if (exists (printf "/etc/nginx/vhost.d/%s_dbfilter" $host )) }}
+	    include {{ (printf "/etc/nginx/vhost.d/%s_dbfilter" $host ) }};
+	            {{ end }}
+	        {{ end }}
 		    {{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
 		uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }}_{{ $port }};
@@ -449,6 +465,11 @@ server {
         deny all;
         error_page 403  =  @error_redirect;
             {{ end }}
+            {{ if $dbfilter }}
+                {{ if (exists (printf "/etc/nginx/vhost.d/%s_dbfilter" $host )) }}
+	    include {{ (printf "/etc/nginx/vhost.d/%s_dbfilter" $host ) }};
+	            {{ end }}
+	        {{ end }}
             {{ if eq $proto "uwsgi" }}
         include uwsgi_params;
         uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }};

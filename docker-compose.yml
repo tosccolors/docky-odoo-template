@@ -1,7 +1,7 @@
-
+version: '3.7'
 networks:
   default:
-#    name: magnus-prod
+    name: tosc-template
     driver: bridge
     driver_opts:
       com.docker.network.driver.mtu: 1450
@@ -9,8 +9,8 @@ networks:
 services:
   nginx:
     image: nginx:latest
-#    labels:
-#      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     container_name: nginx
     restart: unless-stopped
     ports:
@@ -35,78 +35,103 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
 
+  nginx-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion:latest
+    container_name: nginx-letsencrypt
+    restart: unless-stopped
+    volumes:
+      - ${NGINX_FILES_PATH}/conf.d:/etc/nginx/conf.d
+      - ${NGINX_FILES_PATH}/vhost.d:/etc/nginx/vhost.d
+      - ${NGINX_FILES_PATH}/html:/usr/share/nginx/html
+      - ${NGINX_FILES_PATH}/certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      NGINX_DOCKER_GEN_CONTAINER: "nginx-gen"
+      NGINX_PROXY_CONTAINER: "nginx"
+
   db15:
+    container_name: postgres15_db
+    image: postgres:15
+    labels:
+      - "5432"
     environment:
       - POSTGRES_USER=${PGUSER}
-      - POSTGRES_DB=${PGDATABASE}
       - POSTGRES_PASSWORD=${PGPASSWORD}
-    image: postgres:15.2
     restart: unless-stopped
-#    networks:
-#      - backend-prod
     volumes:
-      - .db/data/:/var/lib/postgresql/data
+      - .db15/data/:/var/lib/postgresql/data
+      - .db15/socket/:/var/run/postgresql/
     ports:
       - 5432:5432
 
-  odoo:
-    build: odoo
-#    image: xxx
+#  ocr:
+#    build:
+#      context: /home/docky/tosc-base/ocrmypdf
+#      dockerfile: Dockerfile
+#    container_name: ocr
+#    image: tosc-registry:443/ocrmypdf:nld
+#    entrypoint: python3
+#    restart: unless-stopped
+#    expose:
+#      - 5000
+#    command: [ "webservice.py" ]
+
+  ocrmypdf:
+    image: jbarlow83/ocrmypdf
+    entrypoint: "python"
+    command: "webservice.py"
+
+  kwkhtmltopdf:
+    container_name: kwkhtmltopdf
+#    image: ghcr.io/acsone/kwkhtmltopdf:0.12.1.3-latest
+    image: ghcr.io/acsone/kwkhtmltopdf:0.12.5-latest
+    restart: unless-stopped
+    expose:
+      - 8080
+
+  tosc_odoo16_template:
+    build: /home/docky/tosc_odoo16_template/odoo/
+    container_name: tosc_odoo16_template
+    image: tosc-registry:443/tosc_odoo16_template:latest
     environment:
-      - MIGRATE=${MIGRATE}
-      - PYTHONDONTWRITEBYTECODE=${PDWBC}
-      - LOCAL_USER_ID=${UID}
+      - MIGRATE=false
+      - PYTHONDONTWRITEBYTECODE=true
+      - LOCAL_USER_ID=$UID
       - DB_USER=${PGUSER}
       - DB_PASS=${PGPASSWORD}
-      - DB_NAME=$DB_NAME
-      - DB_FILTER=${DB_FILTER}
+      - DB_MAXCONN=$DB_MAXCONN
+      - DB_HOST=$PGHOST
       - ADMIN_PASSWD=${ADMIN_PASSWD}
-      - RUNNING_ENV=${ENV}
-      - LIST_DB=${LIST_DB}
-#     - DEMO=False 
-      - LIMIT_TIME_CPU=${LIMIT_TIME_CPU}
-      - LIMIT_TIME_REAL=${LIMIT_TIME_REAL}
-      - DB_HOST=${DB_HOST}
-      - ADDONS_PATH=${ADDONS_PATH}
-#      - MARABUNTA_MODE=demo
-      - VIRTUAL_HOST=${HOST}
-      - VIRTUAL_PORT=8069,8072/longpolling
+      - DB_NAME=bo16.odoo-template.nl
+      - DB_FILTER=bo16.odoo-template.nl
+      - RUNNING_ENV=prod
+      - LIST_DB=false
+      #     - DEMO=False
+      - LIMIT_TIME_CPU=600
+      - LIMIT_TIME_REAL=1200
+      - WORKERS=3
+      - ADDONS_PATH=${ADDONS_PATH_TOSC_ODOO16_TEMPLATE}
+      #      - MARABUNTA_MODE=demo
+      - VIRTUAL_HOST=bo16.odoo-template.nl
+      - VIRTUAL_PORT=8069,8072/websocket
       - KWKHTMLTOPDF_SERVER_URL=http://kwkhtmltopdf:8080
-      - ODOO_REPORT_URL=http://localhost:8069
-    expose:
-      - 8069
-      - 8072
-#    networks:
-#      - xxx_default
-#      - backend-prod
+      - ODOO_REPORT_URL=http://tosc_odoo16_template:8069
+#    user: odoo
+#    expose:
+#      - 8069
+#      - 8072
+    ports:
+      - 8077:8069
+      - 8078:8072
     volumes:
-      - ./odoo:/odoo
-      - ./data/addons:/data/odoo/addons
-      - ./data/filestore:/data/odoo/filestore
-      - ./data/sessions:/data/odoo/sessions
-#    command: ["odoo"]
-    command: ["bash"]
+#      - /home/docky/tosc_odoo16_template/odoo/external-src:/odoo/external-src
+#      - /home/docky/tosc_odoo16_template/odoo/src/addons:/odoo/src/odoo/addons
+#      - /home/docky/tosc_odoo16_template/odoo/links:/odoo/links
+#      - /home/docky/tosc_odoo16_template/odoo/local-src:/odoo/local-src
+      - /home/docky/tosc_odoo16_template/data:/odoo/data/odoo
+#    command: [ "odoo" ]
+    command: [ "bash" ]
     stdin_open: true
     tty: true
     extra_hosts:
-      - "casa.tosc.nl:10.225.12.141"
-
-  ocr:
-    build:
-      context: ./ocrmypdf
-      dockerfile: Dockerfile
-    image: magnus-registry:443/ocrmypdf:nld
-#    image: jbarlow83/ocrmypdf:latest
-    entrypoint: python3
-    restart: unless-stopped
-    expose:
-      - 5000
-    command: ["webservice.py"]
-
-  kwkhtmltopdf:
-    image: ghcr.io/acsone/kwkhtmltopdf:0.12.1.3-latest
-    restart: unless-stopped
-    expose:
-     - 8080
-
-version: '3'
+      - "casa.tosc.nl:10.147.34.251"
